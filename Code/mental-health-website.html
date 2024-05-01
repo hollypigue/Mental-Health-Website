@@ -1,0 +1,222 @@
+<!DOCTYPE html> 
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Mental Health Resources </title>
+
+        <style> 
+            body {
+                background-color: beige;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                display: flex; 
+                flex-direction: column; 
+                align-items: center;
+            }
+            
+            h1 {
+                color:purple;
+                text-align: center;
+            }
+            
+            h2 {
+                color:purple;
+                text-align: center;
+            }
+            
+            h3 {
+                color: blue;
+                text-align: center;
+            }
+            
+            h4{
+                color: green;
+                text-align: center;
+            }
+            
+            p {
+                color: black;
+                text-align: center;
+            }
+            
+            .center {
+                display: block;
+            }
+            
+            .left {
+                display: block;
+            }
+            
+            .right {
+                display: block;
+            }
+
+            .container {
+                width: 80%;
+                max-width: 800px;
+                text-align: center;
+                margin-top: 50px;;
+            }
+
+            img.centered {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            #moodForm {
+                margin-bottom: 20px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <section>
+            <h1>Mental Health Resources</h1>
+            <img src = "meditation.jpg" style="width: 1000px; height: 400px;" class="centered">
+            <h2>A Place for all things Mental Health Related</h2>
+
+            <p id="demo">Click for Authorize Purposes</p> 
+            <button type="button" style="position: absolute; left: 60%; transform: translateY(-170%)" onclick="myFunction()">Click Here</button>
+
+            <p>The idea for this website is to help support Mental Health issues and allowing people to get back on track with their life.</p>  
+            <p>Here you can match with a Licensed Professional Therapist online with many choices of preferred characteristics for your therapist.</p>  
+            <p>You can also choose the type of therapy if you do better with Cognitive behaviroal therapy or Art therapy it is your choice.</p>  
+            <p>This site has many guided and unguided journal excersices along with meditation practices.</p> 
+            <p>This is all available to any one and eveyrone as it is affordable care with and without Insurance.</p>  
+            <p>Emergency Hotline and Crisis Help are provided at the bottom for those who need them.</p> 
+            <p>So feel free to scroll through and we hope you choose our resources to help better your mental health!</p>
+            <img src = "mental health.jpg" style="width: 600px; height: 300px;" class="centered"> 
+        </section>
+
+        <section>
+            <div class="container">
+                <h3>Mood Tracker</h3>
+                <div id="moodForm">
+
+                    <label for="moodSelect"> Select Your Mood: </label>
+                    <select id="moodSelect">
+                        <option value="Happy">Happy</option>
+                        <option value="Sad">Sad</option>
+                        <option value="Anxious">Anxious</option>
+                        <option value="Depressed">Depressed</option>
+                        <option value="Neutral">Neutral</option>
+                    </select>
+                    <button type="button" style="position: absolute; left: 55%; transform: translateY(-100%)" onclick="recordMood()">Record Mood</button>
+                </div>
+                <div id="moodHistory">
+                    <h3>Mood History</h3>
+                    <ul id="moodList">
+
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <h2>Breathing Excercise</h2>
+        <p id="breathingExercise"></p>
+
+        <script>
+            var text="";
+            var i = 1;
+            while (i < 11){
+            text += "<br>Inhale, Exhale " +i;
+            i++;
+        }
+        document.getElementById("breathingExercise").innerHTML = text;
+
+        let moodHistory = [];
+        function recordMood() {
+
+            const moodSelect = document.getElementById("moodSelect");
+            const selectedMood = moodSelect.value;
+
+            const currentDate = new Date();
+            const timestamp = currentDate.toLocaleString();
+
+            const moodEntry = {
+                mood: selectedMood,
+                timestamp: timestamp
+            };
+            moodHistory.push(moodEntry);
+            updateMoodHistory();
+
+        }
+
+        function updateMoodHistory() {
+            const moodList = document.getElementById("moodList");
+            moodList.innerHTML = "";
+
+            moodHistory.forEach(entry => {
+                const li = document.createElement("li");
+                li.textContent = `${entry.timestamp}: ${entry.mood}`;
+                moodList.appendChild(li);
+            });
+        }
+
+        function myFunction(){
+            document.getElementById("demo").innerHTML = "Welcome to bettering your Mental Health!";
+        }
+        </script>
+
+        <section>
+            <h4>Support For: </h4>
+            <ul>
+                <li>ADHD</li>
+                <li>Anxiety</li>
+                <li>Depression</li>
+                <li>OCD</li>
+                <li>Stress</li>
+                <li>And More</li>
+            </ul>
+            
+            <h4>Resources: </h4>
+            <ol>
+                <li>Therapy</li>
+                <li>Meditation</li>
+                <li>Journaling</li>
+                <li>Emergency Crisis Hotline</li>
+            </ol>
+            <h4>Therapy</h4>
+            <dl>
+                <dt>Online Help</dt>
+                <dt>Text, Email, or Video Chat</dt>
+                <dt>Community Support</dt>
+            </dl>
+
+            <h4>Meditation</h4>
+            <dl>
+                <dt>Pre-recorded Audios with choice of voice</dt>
+                <dt>Pre-recorded Videos with choice of instructors</dt>
+                <dt>Group Meditation with schedule.</dt>
+            </dl>
+
+            <h4>Journaling</h4>
+            <dl>
+                <dt>Journal Prompts by Therapist</dt>
+                <dt>Daily Mood Tracker</dt>
+                <dt>Goal Setting / Tracking</dt>
+            </dl>
+
+            <h4>Emergency Crisis Hotline</h4>
+            <dl>
+                <dt>Emergency Hotline to call: 988</dt>
+                <dt>If in serious crisis please call 911</dt>
+            </dl>
+            
+
+        </section>
+
+        <section>
+            <img src = "therapy.jpg" style="width: 300px; height: 400px;" class="centered">
+        </section>
+
+        <section>
+            <h4>Links for Outside Resrouces:</h4>
+            <a href="https://988lifeline.org/">988lifeline</a>
+            <a href="https://www.samhsa.gov/find-help/national-helpline">SAMSHA</a>
+            <a href="https://www.psychologytoday.com/us?tr=Hdr_Brand">Psychology Today</a>
+        </section>
+        
+    </body>
+</html>
